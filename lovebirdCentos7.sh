@@ -22,7 +22,10 @@ echo "Getting File System configuration from /etc/fstab"
 #cat /etc/fstab|grep /var
 
 fs_var=`cat /etc/fstab|grep /var`
+fs_tmp=`cat /etc/fstab|grep /tmp`
+fs_home=`cat /etc/fstab|grep /home`
 
+##BOF var fstab
 len_var=${#fs_var}
 if [ $len_var -ge 1 ];then
 	#echo "$fs_var"
@@ -52,4 +55,75 @@ if [ $len_var -ge 1 ];then
 	fi
 	
 fi
-#echo $res
+##EOF var fstab
+
+echo "---------------------------------------------------"
+
+##BOF tmp fstab
+len_tmp=${#fs_tmp}
+if [ $len_tmp -ge 1 ];then
+	#echo "$fs_tmp"
+	fdef=`echo $fs_tmp|grep defaults`
+	lfdef=${#fdef}
+	if [ $lfdef -ge 1 ];then
+		buff=$fdef
+		nosuid=`echo $buff|grep nosuid` 
+		lnosuid=${#nosuid}
+		if [ $lnosuid -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,nosuid/g'`
+		fi
+		noexec=`echo $buff|grep noexec`
+		lnoexec=${#noexec}
+		if [ $lnoexec -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,noexec/g'`
+		fi
+		nodev=`echo $buff|grep nodev`
+		lnodev=${#nodev}
+		if [ $lnodev -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,nodev/g'`
+		fi
+		echo "Original:"
+		echo $fdef
+		echo "Update to:"
+		echo $buff
+	fi
+	
+fi
+#EOF tmp fstab
+
+echo "---------------------------------------------------"
+
+
+##BOF home fstab
+len_home=${#fs_home}
+if [ $len_home -ge 1 ];then
+	#echo "$fs_home"
+	fdef=`echo $fs_home|grep defaults`
+	lfdef=${#fdef}
+	if [ $lfdef -ge 1 ];then
+		buff=$fdef
+		nosuid=`echo $buff|grep nosuid` 
+		lnosuid=${#nosuid}
+		if [ $lnosuid -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,nosuid/g'`
+		fi
+		noexec=`echo $buff|grep noexec`
+		lnoexec=${#noexec}
+		if [ $lnoexec -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,noexec/g'`
+		fi
+		nodev=`echo $buff|grep nodev`
+		lnodev=${#nodev}
+		if [ $lnodev -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,nodev/g'`
+		fi
+		echo "Original:"
+		echo $fdef
+		echo "Update to:"
+		echo $buff
+	fi
+	
+fi
+#EOF home fstab
+
+
