@@ -15,8 +15,9 @@ buff=""
 echo ""
 echo "LOVEBIRD CENTOS7 | Hardening Automation v1.0"
 echo "--------------------------------------------"
-echo ""
-echo "Getting File System configuration from /etc/fstab"
+#echo ""
+echo "######################################################"
+echo "Filesystem Configuration"
 #cat /etc/fstab|grep /home
 #cat /etc/fstab|grep /tmp
 #cat /etc/fstab|grep /var
@@ -126,4 +127,15 @@ if [ $len_home -ge 1 ];then
 fi
 #EOF home fstab
 
+echo "######################################################"
 
+echo "Hardening Tools"
+echo "yum -y install tcpdump logrotate aide iptables rsyslog tcp_wrappers"
+echo "yum install -y epel-release"
+echo "yum install -y rkhunter"
+echo "rkhunter --update"
+echo "rkhunter --propupd"
+
+echo ""
+echo "######################################################"
+echo "SELinux Configuration"
