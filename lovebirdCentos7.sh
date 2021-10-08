@@ -45,6 +45,9 @@ if [ $len_var -ge 1 ];then
 		if [ $lnodev -eq 0 ];then
 			buff=`echo $buff|sed 's/defaults/defaults,nodev/g'`
 		fi
+		echo "Original:"
+		echo $fdef
+		echo "Update to:"
 		echo $buff
 	fi
 	
