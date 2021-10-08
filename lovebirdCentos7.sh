@@ -36,7 +36,15 @@ if [ $len_var -ge 1 ];then
 			buff=`echo $buff|sed 's/defaults/defaults,nosuid/g'`
 		fi
 		noexec=`echo $buff|grep noexec`
+		lnoexec=${#noexec}
+		if [ $lnoexec -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,noexec/g'`
+		fi
 		nodev=`echo $buff|grep nodev`
+		lnodev=${#nodev}
+		if [ $lnodev -eq 0 ];then
+			buff=`echo $buff|sed 's/defaults/defaults,nodev/g'`
+		fi
 		echo $buff
 	fi
 	
