@@ -149,3 +149,13 @@ echo "yum erase setroubleshoot -y"
 echo ""
 echo "######################################################"
 echo "Secure Boot"
+echo "chown root:root /boot/grub2/grub.cfg"
+echo "chmod og-rwx /boot/grub2/grub.cfg"
+echo "cp /boot/grub2/grub.cfg /boot/grub2/grub.cfgbfrepass-bkp"
+echo "grub2-setpassword"
+echo "cat /boot/grub2/grub.cfg"
+
+
+echo ""
+echo "######################################################"
+echo "pvdisplay"
